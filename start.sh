@@ -1,5 +1,8 @@
 #!/bin/bash -x
 clear
+profile=$(gsettings get org.gnome.Terminal.ProfilesList default)
+profile=${profile:1:-1} # remove leading and trailing single quotes
+gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/" login-shell true
 #export DEBIAN_FRONTEND=noninteractive
 # Exit on error
 set -o errexit
