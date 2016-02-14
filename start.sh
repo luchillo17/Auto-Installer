@@ -16,7 +16,8 @@ elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
   source "/usr/local/rvm/scripts/rvm"
 fi
 
-if ! [[rails -v &> /dev/null =~ 'rails']]; then
+rails -v 2> /dev/null | grep -iq rails
+if [[ $? -ne 0 ]]; then
   echo 'Installing Rails'
   echo progress-bar > ~/.curlrc
   gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
@@ -42,4 +43,4 @@ echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 gem install bundler
 gem update
 
-exit 0
+exit $?
