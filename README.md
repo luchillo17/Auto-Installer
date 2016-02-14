@@ -15,3 +15,7 @@ Run with `sudo bash start.sh`, it will set some configs for your terminal as wel
 
 RVM, ruby, rails and sub-dependencies, also HomeBrew if on OSX.
 Take note that RVM use after being installed require profile to set the profile config for variable `Run command as a login shell` to true, the start shell set it by default but if you don't want it (i hardly belive you even care about that) you can disable manually.
+
+# License
+
+In this same folder is the license file, basically released under an MIT license.
