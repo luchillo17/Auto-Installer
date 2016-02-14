@@ -5,6 +5,13 @@ clear
 set -o errexit
 
 # Here's inverted commilla just in case `
+if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
+  # First try to load from a user install
+  source "$HOME/.rvm/scripts/rvm"
+elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
+  # Then try to load from a root install
+  source "/usr/local/rvm/scripts/rvm"
+fi
 
 if ! [[rails -v &> /dev/null =~ 'rails']]; then
   echo 'Installing Rails'
@@ -27,3 +34,8 @@ ruby_latest = curl 'http://ftp.ruby-lang.org/pub/ruby/' 2> /dev/null | ruby -e "
 
 rvm install $ruby_latest --default
 # rvm use $ruby_latest
+echo "gem: --no-ri --no-rdoc" > ~/.gemrc
+gem install bundler
+gem update
+
+exit 0
