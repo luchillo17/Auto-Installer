@@ -14,7 +14,7 @@ Run with `sudo bash start.sh`, it will set some configs for your terminal as wel
 # Dependencies auto-installed
 
 RVM, ruby, rails and sub-dependencies, also HomeBrew if on OSX.
-Take note that RVM use after being installed require profile to set the profile config for variable `Run command as a login shell` to true, the start shell set it by default but if you don't want it (i hardly belive you even care about that) you can disable manually. Refer to https://rvm.io/integration/gnome-terminal
+Take note that RVM use after being installed require the default profile to set the profile config variable for `Run command as a login shell` to true, the start shell set it by default but if you don't want it (i hardly belive you even care about that) you can disable manually, also if using rvm yourself close and open the terminal after installing or source the rvm file with `$HOME/.rvm/scripts/rvm &> /dev/null || /usr/local/rvm/scripts/rvm`. Refer to https://rvm.io/integration/gnome-terminal
 
 # License
 

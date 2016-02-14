@@ -5,7 +5,7 @@ profile=${profile:1:-1} # remove leading and trailing single quotes
 gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/" login-shell true
 #export DEBIAN_FRONTEND=noninteractive
 # Exit on error
-set -o errexit
+# set -o errexit
 
 # Here's inverted commilla just in case `
 if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
@@ -31,15 +31,17 @@ elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
   # Then try to load from a root install
   source "/usr/local/rvm/scripts/rvm"
 else
-  printf "ERROR: An RVM installation was not found.\n"
-
+  echo "ERROR: An RVM installation was not found.\n"
+  exit 1
 fi
 
-ruby_latest = curl 'http://ftp.ruby-lang.org/pub/ruby/' 2> /dev/null | ruby -e "puts STDIN.each_line.map { |x| /ruby-\d\.\d\.\d/.match(x) }.compact.last[0].chomp '/'"
+ruby_latest=$(curl 'http://ftp.ruby-lang.org/pub/ruby/' 2> /dev/null | ruby -e "puts STDIN.each_line.map { |x| /ruby-\d\.\d\.\d/.match(x) }.compact.last")
 
 rvm install $ruby_latest --default
 # rvm use $ruby_latest
-echo "gem: --no-ri --no-rdoc" > ~/.gemrc
+if ! grep -Fxq "gem: --no-ri --no-rdoc" ~/.gemrc; then
+  echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
+fi
 gem install bundler
 gem update
 
