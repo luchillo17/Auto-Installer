@@ -16,6 +16,10 @@ Run with `sudo bash start.sh`, it will set some configs for your terminal as wel
 RVM, ruby, rails and sub-dependencies, also HomeBrew if on OSX.
 Take note that RVM use after being installed require the default profile to set the profile config variable for `Run command as a login shell` to true, the start shell set it by default but if you don't want it (i hardly belive you even care about that) you can disable manually, also if using rvm yourself close and open the terminal after installing or source the rvm file with `$HOME/.rvm/scripts/rvm &> /dev/null || /usr/local/rvm/scripts/rvm`. Refer to https://rvm.io/integration/gnome-terminal
 
+# Reset.sh
+
+Use `sudo bash reset.sh` in case you get an error about PATH or something related to RVM, this file will wipe out RVM, you should comment out or delete any lines refering rvm in the files stated at the output of the script and try again the `start.sh`.
+
 # License
 
 In this same folder is the license file, basically released under an MIT license.
