@@ -1,5 +1,11 @@
 #!/bin/bash -x
 clear
+
+# Get user and password without echoing it.
+user=$(whoami)
+echo -n Password:
+read -s password
+
 profile=$(gsettings get org.gnome.Terminal.ProfilesList default)
 profile=${profile:1:-1} # remove leading and trailing single quotes
 gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/" login-shell true
@@ -40,7 +46,10 @@ ruby_latest=$(curl 'http://ftp.ruby-lang.org/pub/ruby/' 2> /dev/null | ruby -e "
 rvm install $ruby_latest --default
 # rvm use $ruby_latest
 if ! grep -Fxq "gem: --no-ri --no-rdoc" ~/.gemrc; then
-  echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
+  # Reset time pollicy for sudo command
+  # sudo -k
+  echo $password | sudo -v -S &> /dev/null
+  echo "gem: --no-ri --no-rdoc" | sudo -S tee -a ~/.gemrc > /dev/null
 fi
 gem install bundler
 gem update
