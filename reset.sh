@@ -2,9 +2,10 @@
 user=$(whoami)
 echo -n Password:
 read -s password
-rvm implode
+
+echo 'yes' | rvm implode
 gem uninstall rvm
-sudo -k
+
 echo $password | sudo -v -S &> /dev/null
 sudo rm -rf $HOME/.rvm $HOME/.rvmrc /etc/rvmrc /etc/profile.d/rvm.sh /usr/local/rvm /usr/local/bin/rvm
 sudo groupdel rvm
