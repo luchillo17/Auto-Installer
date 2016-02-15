@@ -3,7 +3,7 @@ clear
 
 # Get user and password without echoing it.
 user=$(whoami)
-echo -n Password:
+echo -n 'Sudo Password:'
 read -s password
 
 profile=$(gsettings get org.gnome.Terminal.ProfilesList default)
@@ -22,12 +22,12 @@ elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
   source "/usr/local/rvm/scripts/rvm"
 fi
 
-rails -v 2> /dev/null | grep -iq rails
+type rvm | head -1 | grep -iq 'rvm is a function'
 if [[ $? -ne 0 ]]; then
   echo 'Installing Rails'
   echo progress-bar > ~/.curlrc
   gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-  echo $password | \curl -sSL https://get.rvm.io | bash -s stable --ruby --rails
+  echo $password | \curl -sSL https://get.rvm.io | bash -s stable --ruby
 fi
 
 if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
@@ -44,6 +44,9 @@ fi
 ruby_latest=$(curl 'http://ftp.ruby-lang.org/pub/ruby/' 2> /dev/null | ruby -e "puts STDIN.each_line.map { |x| /ruby-\d\.\d\.\d/.match(x) }.compact.last")
 
 rvm install $ruby_latest --default
+gem install bundler
+gem install rails
+gem update
 # rvm use $ruby_latest
 if ! grep -Fxq "gem: --no-ri --no-rdoc" ~/.gemrc; then
   # Reset time pollicy for sudo command
@@ -51,7 +54,5 @@ if ! grep -Fxq "gem: --no-ri --no-rdoc" ~/.gemrc; then
   echo $password | sudo -v -S &> /dev/null
   echo "gem: --no-ri --no-rdoc" | sudo -S tee -a ~/.gemrc > /dev/null
 fi
-gem install bundler
-gem update
 
 exit $?

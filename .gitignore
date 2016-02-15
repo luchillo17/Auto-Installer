@@ -1,3 +1,6 @@
+*.sublime*
+test.sh
+
 *.rbc
 capybara-*.html
 .rspec
