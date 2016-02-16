@@ -11,7 +11,7 @@ Use with care, i tested in Ubuntu 15.10 but i'm no pro bash scripter, test in Vi
 
 Run `start.sh` and it will ask you for a sudo password, most likely will be the root password.
 
-``` bash
+```bash
 sudo bash start.sh
 ```
 This will set some configs for your terminal as well as install some dependencies listed later in this file, then opens a browser window/tab that allow you to chose what to install as well as the install options for it, if you don't know anything about the configs you can leave the defaults and change later manually.
