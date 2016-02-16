@@ -1,7 +1,7 @@
 # Auto-Installers
 
 This repository brings an app that allow you to select installing some packages automatically, mostly for development, also allow to chain multiple installs, so you can select what to install as well as the config options of installation, start installing selected installs and then relax, get a cup of coffee or go to sleep meanwhile.
-I recommend using alongside with systemback or similar in your OS just to be careful in case it breaks something, run with 'sudo bash _file_.sh' .
+I recommend using alongside with systemback or similar in your OS just to be careful in case it breaks something.
 
 # Disclaimer
 
@@ -9,7 +9,12 @@ Use with care, i tested in Ubuntu 15.10 but i'm no pro bash scripter, test in Vi
 
 # Instructions
 
-Run with `sudo bash start.sh`, it will set some configs for your terminal as well as install some dependencies listed later in this file, then opens a browser window/tab that allow you to chose what to install as well as the install options for it, if you don't know anything about the configs you can leave the defaults and change later manually.
+Run `start.sh` and it will ask you for a sudo password, most likely will be the root password.
+
+```bash
+sudo bash start.sh
+```
+This will set some configs for your terminal as well as install some dependencies listed later in this file, then opens a browser window/tab that allow you to chose what to install as well as the install options for it, if you don't know anything about the configs you can leave the defaults and change later manually.
 
 # Dependencies auto-installed
 

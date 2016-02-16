@@ -2,6 +2,13 @@
 user=$(whoami)
 echo -n Password:
 read -s password
+sudo -k
+echo $password | sudo -v -S &> /dev/null
+
+if [[ $? -ne 0 ]]; then
+  echo 'Wrong sudo password'
+  exit $?
+fi
 
 for x in `gem list --no-versions`; do gem uninstall $x -a -x -I; done
 
