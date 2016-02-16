@@ -3,6 +3,8 @@ user=$(whoami)
 echo -n Password:
 read -s password
 
+for x in `gem list --no-versions`; do gem uninstall $x -a -x -I; done
+
 echo 'yes' | rvm implode
 gem uninstall rvm
 

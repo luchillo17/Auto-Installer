@@ -12,6 +12,14 @@ gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/prof
 #export DEBIAN_FRONTEND=noninteractive
 # Exit on error
 # set -o errexit
+#
+sudo -k
+echo $password | sudo -v -S &> /dev/null
+
+if [[ $? -ne 0 ]]; then
+  echo 'Wrong sudo password'
+  exit $?
+fi
 
 # Here's inverted commilla just in case `
 if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
@@ -44,10 +52,11 @@ fi
 ruby_latest=$(curl 'http://ftp.ruby-lang.org/pub/ruby/' 2> /dev/null | ruby -e "puts STDIN.each_line.map { |x| /ruby-\d\.\d\.\d/.match(x) }.compact.last")
 
 rvm install $ruby_latest --default
-gem install bundler
-gem install rails
-gem update
 # rvm use $ruby_latest
+gem install bundler
+gem install rails -- --use-system-libraries
+
+gem update
 if ! grep -Fxq "gem: --no-ri --no-rdoc" ~/.gemrc; then
   # Reset time pollicy for sudo command
   # sudo -k

@@ -16,9 +16,17 @@ Run with `sudo bash start.sh`, it will set some configs for your terminal as wel
 RVM, ruby, rails and sub-dependencies, also HomeBrew if on OSX.
 Take note that RVM use after being installed require the default profile to set the profile config variable for `Run command as a login shell` to true, the start shell set it by default but if you don't want it (i hardly belive you even care about that) you can disable manually, also if using rvm yourself close and open the terminal after installing or source the rvm file with `$HOME/.rvm/scripts/rvm &> /dev/null || /usr/local/rvm/scripts/rvm`. Refer to https://rvm.io/integration/gnome-terminal
 
+## Known issues
+
+Some times the rails install will output some errors, try this:
+1. Use `gem install rails -- --use-system-libraries`
+2. Check this stack overflow post: [Error with compiling Nokogiri to install Rails](http://stackoverflow.com/questions/27762456/error-with-compiling-nokogiri-to-install-rails)
+3. Check this stack overflow post if previous not worked and on OS X: [Error to install Nokogiri on OSX 10.9 Maverick](http://stackoverflow.com/questions/19643153/error-to-install-nokogiri-on-osx-10-9-maverick/19807558#19807558)
+
 # Reset.sh
 
 Use `sudo bash reset.sh` in case you get an error about PATH or something related to RVM, this file will wipe out RVM, you should comment out or delete any lines refering rvm in the files stated at the output of the script and try again the `start.sh`.
+
 
 # License
 
