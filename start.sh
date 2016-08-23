@@ -49,7 +49,7 @@ else
   exit 1
 fi
 
-ruby_latest=$(curl 'http://ftp.ruby-lang.org/pub/ruby/' 2> /dev/null | ruby -e "puts STDIN.each_line.map { |x| /ruby-\d\.\d\.\d/.match(x) }.compact.last")
+ruby_latest=$(curl 'http://ftp.ruby-lang.org/pub/ruby/' 2> /dev/null | ruby -e "puts STDIN.each_line.map { |x| /ruby-\d\.\d\.\d\./.match(x) }.compact.last.to_s.chop")
 
 rvm install $ruby_latest --default
 # rvm use $ruby_latest
