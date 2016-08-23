@@ -54,7 +54,7 @@ ruby_latest=$(curl 'http://ftp.ruby-lang.org/pub/ruby/' 2> /dev/null | ruby -e "
 rvm install $ruby_latest --default
 # rvm use $ruby_latest
 gem install bundler
-gem install rails -v 5.0.0.beta2
+gem install rails -v 5.0.0.1
 # gem install rails --pre
 
 gem update
